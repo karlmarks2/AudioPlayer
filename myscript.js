@@ -1,18 +1,25 @@
-//HTML документ загрузился и дерево DOM построено - можно подписываться на события
-document.addEventListener("DOMContentLoaded", subscribeToEvents);
-function subscribeToEvents(event) {
-    var elmSong = document.getElementById('song'); //audio element
-    var elmPlayPause = document.getElementById('btn-play-pause'); //div element с id='btn-play-pause'
-    var elmDownLoad = document.getElementById('btn-download'); //div element с id='btn-download'
-    var elmUpLoad = document.getElementById('btn-upload'); //div element с id='btn-upload'
-    var elmSpeaker = document.getElementById('btn-speaker'); //div element с id='btn-speaker'
-    var elmTrackTime = document.getElementById('track-time'); //div element с id='track-time'
-    var elmTrackSlider = document.getElementById('track-slider'); //div element с id='track-slider'
-    var elmTimePassed = document.getElementById('time-passed');
-    var elmTimeElasted = document.getElementById('time-elasted');  
-    var songDuration; // Duration of song clip
-    
-    // handler clickElmSong event listenter   
+
+document.addEventListener("DOMContentLoaded", subscribeToEvents); //HTML документ загрузился и DOM 
+function subscribeToEvents(event) { //+ построен - можно подписываться на события
+    let elmSong = document.getElementById('song'); //audio element
+    let elmPlayPause = document.getElementById('btn-play-pause');
+    let elmDownLoad = document.getElementById('btn-download');
+    let elmUpLoad = document.getElementById('btn-upload');
+    let elmSpeaker = document.getElementById('btn-speaker');
+    let elmTrackTime = document.getElementById('track-time'); //visual track-time song play 
+    let elmTrackSlider = document.getElementById('track-slider'); //track-slider (polzunok) 
+    let elmTimePassed = document.getElementById('time-passed'); //time-passed song play
+    let elmTimeElasted = document.getElementById('time-elasted'); //time-elasted song play 
+    let songDuration; //duration of song clip
+	let visualTrackLen = elmTrackTime.offsetWidth - elmTrackSlider.offsetWidth;
+	// console.log(`
+	// 	visualTrackLen=${visualTrackLen}, 
+	// 	elmTrackTimeWidth=${elmTrackTime.offsetWidth},
+	// 	elmTrackSliderWidth=${elmTrackSlider.offsetWidth}
+    // 		`);   
+    // --------------------------------------------
+    // handler clickElmSong event
+    //---------------------------------------------
     elmPlayPause.addEventListener("click", function(event){
         console.log(elmSong.paused);       
         if (elmSong.paused) { // start song
@@ -27,47 +34,55 @@ function subscribeToEvents(event) {
              elmPlayPause.className = "btn-play btn-all";
         }
     })
-    // handler clickElmDownLoad event listenter   
+    // --------------------------------------------
+    // handler clickElmDownLoad event
+    // --------------------------------------------
     elmDownLoad.addEventListener("click", function(event){
         console.log('Pressed click on button DownLoad');       
     })
-    // handler clickElmUpLoad event listenter   
+    // --------------------------------------------
+    // handler clickElmUpLoad event
+    // --------------------------------------------  
     elmUpLoad.addEventListener("click", function(event){
         console.log('Pressed click on button UpLoad');    
     })
-    // handler clickElmSpeaker event listenter   
+    // --------------------------------------------
+    // handler clickElmSpeaker event
+    // -------------------------------------------- 
     elmSpeaker.addEventListener("click", function(event){
         console.log('Pressed click on button Speaker');    
     })
-    // handler clickElmTrackTime event listenter   
+    // --------------------------------------------
+    // handler clickElmTrackTime event 
+    // --------------------------------------------  
     elmTrackTime.addEventListener("click", function(event){
-        console.log('Pressed click on track time'); 
-        // moveplayhead(event);
-        //elmSong.currentTime = songDuration * clickPercent(event);
-        // timeline.addEventListener("click", function(event) {
-        //     moveplayhead(event);
-        //     elmSong.currentTime = songDuration * clickPercent(event);
-        // }, false);
-        
+        console.log('Pressed click on track time');		
+	    let songRestTimePlay = (event.clientX - elmTrackTime.getBoundingClientRect().left) / visualTrackLen	
+        elmSong.currentTime = songDuration * songRestTimePlay;       
     })
-    // handler clickElmTrackSlider event listenter   
-    elmTrackSlider.addEventListener("click", function(event){
-        console.log('Pressed click on track slider');    
-    }) 
-    // getSongDuration event listenter   
+    // --------------------------------------------
+    // handler clickElmTrackSlider event (not used)
+    // --------------------------------------------  
+    // elmTrackSlider.addEventListener("click", function(event){
+    //     console.log('Pressed click on track slider');    
+    // }) 
+    // --------------------------------------------
+    // handler canplaythroughElmSong event
+    // --------------------------------------------  
     elmSong.addEventListener("canplaythrough", function(event){
         songDuration = elmSong.duration;
         elmTimePassed.textContent=0.00;
         elmTimeElasted.textContent=songDuration;
         //console.log(`songDuration=${songDuration}`);    
     },false) 
-    // getSongTimeUpdate event listenter   
+    // --------------------------------------------
+    // handler timeUpdateElmSong event  
+    // -------------------------------------------- 
     elmSong.addEventListener("timeupdate", function(event){
         let currentTime = elmSong.currentTime;
         //console.log(`currentTime=${currentTime}`)
-        let delta = elmTrackTime.offsetWidth - elmTrackSlider.offsetWidth;
-        let playPercent = delta * (elmSong.currentTime / songDuration);
-        elmTrackSlider.style.marginLeft = playPercent + "px";  
+        let songRestTimePlay = visualTrackLen * (elmSong.currentTime / songDuration);
+        elmTrackSlider.style.marginLeft = songRestTimePlay + "px";  
         elmTimePassed.textContent = currentTime;
         elmTimeElasted.textContent = songDuration-currentTime;
         if (elmSong.currentTime == songDuration) {
@@ -75,23 +90,4 @@ function subscribeToEvents(event) {
             elmPlayPause.className = "btn-play btn-all";
         }    
     }, false);
-
-function clickPercent(event) {
-    return (event.clientX - getPosition(timeline)) / timelineWidth;
-
 }
-function moveplayhead(event) {
-    var newMargLeft = event.clientX - getPosition(timeline);
-
-    if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
-        playhead.style.marginLeft = newMargLeft + "px";
-    }
-    if (newMargLeft < 0) {
-        playhead.style.marginLeft = "0px";
-    }
-    if (newMargLeft > timelineWidth) {
-        playhead.style.marginLeft = timelineWidth + "px";
-    }
-}
-
-    }
