@@ -1,0 +1,55 @@
+html, body {
+    height: 100%;   /* изменить дефолтное значение для height */
+				/*  width: 100%;   менять дефолтное значение для width не нужно */}
+			
+body {
+    margin: 0;
+    padding: 0;}
+/* Elements ID */
+#btn-play-pause,#btn-speaker,#btn-download,#btn-upload{
+	min-height: 20px;
+	width: 20px;
+	border: 1px solid red; 
+}
+/* Buttons style */
+.btn-all{
+	background-repeat: no-repeat;
+	background-size: contain;}	
+.btn-play{
+	background-image: url('../images/play.png') ;}
+.btn-pause{
+	background-image: url('../images/pause.png') ;}
+.btn-speaker{
+	background-image: url('../images/speaker.png') ;}
+.btn-download{
+	background-image: url('../images/download.png') ;}
+.btn-upload{
+	background-image: url('../images/upload.png') ;}
+/* Tracks style */
+.track-time{		
+	width: 382px;
+	height: 20px;
+	background: rgba(0,0,0,.3);
+	/* margin-top: 20px; */
+	border-radius: 15px;}
+	/*Grabable Playhead*/
+.track-volue{		
+	width: 382px;
+	height: 20px;
+	background: rgba(0,0,0,.3);
+	/* margin-top: 20px; */
+	border-radius: 15px;}
+.track-slider{
+	cursor: pointer;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	margin-top: 1px;
+	background: black;}
+/* Times style */
+.time-passed,.time-elasted{
+	font-size:20px;
+	color:#ecf0f1}
+.plaay-speed{
+	font-size:25px;
+	color:#2d2e2e}

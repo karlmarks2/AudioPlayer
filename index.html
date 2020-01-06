@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="myscript.js"></script>
+</head>
+
+
+<body>
+    <figure id="clone0">
+        <!-- <p class-"songTitle">Название дорожки</p> -->
+        <!-- Load Song -->
+        <audio id="song" preload="true">
+            <source src="music/only-you.mp3">
+            Your browser does not support the <code>audio</code> element.
+        </audio>
+        <!--Audio Player User Interface-->
+		<div class="flex-container">
+            <div id="btn-play-pause" class="btn-play btn-all"></div>
+            <div id="time-passed" class="time-passed">0:00</div>
+            <div id="track-time" class="track-time">
+				<div id="track-slider" class="track-slider"></div>
+            </div>
+            <div id="time-elasted" class="time-elasted">0:00</div>
+            <div id="play-speed" class="play-speed">1X</div>
+			<div id="btn-speaker" class="btn-speaker btn-all"></div>
+            <div id="btn-download" class="btn-download btn-all"></div>
+            <div id="btn-upload" class="btn-upload btn-all"></div>
+		</div>
+    </figure>
+</body>
+</html>
