@@ -1,7 +1,7 @@
 html, body {
     height: 100%;   /* изменить дефолтное значение для height */
-				/*  width: 100%;   менять дефолтное значение для width не нужно */}
-			
+				/*  width: 100%;   менять дефолтное значение для width не нужно */
+	cursor: pointer;}	
 body {
     margin: 0;
     padding: 0;}
@@ -40,7 +40,6 @@ body {
 	/* margin-top: 20px; */
 	border-radius: 15px;}
 .track-slider{
-	cursor: pointer;
 	width: 18px;
 	height: 18px;
 	border-radius: 50%;
@@ -48,8 +47,21 @@ body {
 	background: black;}
 /* Times style */
 .time-passed,.time-elasted{
+	cursor: default;
 	font-size:20px;
-	color:#ecf0f1}
-.plaay-speed{
+	color:#0f010149
+}
+.play-speed-menu{
 	font-size:25px;
 	color:#2d2e2e}
+.play-speed-menu ul {
+	margin: 0;
+	list-style: none;
+	padding-left: 20px;
+	display: none;}
+.play-speed-menu.open ul {
+	display: block;} 
+.play-speed-menu.open ul li:hover {
+		background: #786b59; /* Цвет фона под ссылкой */ 
+		color: #ffe; /* Цвет ссылки */ 
+	   } 

@@ -5,6 +5,13 @@ function subscribeToEvents(event) { //+ построен - можно подпи
     let elmPlayPause = document.getElementById('btn-play-pause');
     let elmDownLoad = document.getElementById('btn-download');
     let elmUpLoad = document.getElementById('btn-upload');
+    let elmPlaySpeed = document.getElementById('play-speed');
+    //-------------------------------------------------
+    let elmsLi = document.getElementsByTagName('li');   
+    for ( let i = 0; i < elmsLi.length; i++ ) {
+        elmsLi[i].addEventListener("click", clickElmsLi)
+        };
+    //-------------------------------------------------
     let elmSpeaker = document.getElementById('btn-speaker');
     let elmTrackTime = document.getElementById('track-time'); //visual track-time song play 
     let elmTrackSlider = document.getElementById('track-slider'); //track-slider (polzunok) 
@@ -46,6 +53,24 @@ function subscribeToEvents(event) { //+ построен - можно подпи
     elmUpLoad.addEventListener("click", function(event){
         console.log('Pressed click on button UpLoad');    
     })
+    // --------------------------------------------
+    // handler clickElmPlaySpeed event ++++++++++++
+    // --------------------------------------------  
+    elmPlaySpeed.addEventListener("click", function(event){
+        console.log('Pressed click on elememt play-speed'); 
+        let elmPlaySpeedMenu = document.getElementById('play-speed-menu'); 
+        elmPlaySpeedMenu.classList.toggle('open');
+    })
+    // --------------------------------------------
+    // handler clickElmsLI event ++++++++++++
+    // --------------------------------------------
+    function clickElmsLi(event) {
+        let elmLi = document.getElementById(this.id);
+        console.log(`Pressed click on elememts li, ${elmLi.id}`);
+        console.log(elmLi.textContent);
+        elmPlaySpeed.textContent = elmLi.textContent + 'x';
+        elmSong.playbackRate = elmLi.textContent;
+    }
     // --------------------------------------------
     // handler clickElmSpeaker event
     // -------------------------------------------- 
