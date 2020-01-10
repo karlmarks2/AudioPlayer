@@ -8,10 +8,8 @@
     <link href="css/style.css" rel="stylesheet">
     <script src="myscript.js"></script>
 </head>
-
-
 <body>
-    <figure id="clone0">
+    <figure>
         <!-- <p class-"songTitle">Название дорожки</p> -->
         <!-- Load Song -->
         <audio id="song" preload="true">
@@ -19,15 +17,19 @@
             Your browser does not support the <code>audio</code> element.
         </audio>
         <!--Audio Player User Interface-->
-		<div class="flex-container">
+		<div class="flex-container middle">
             <div id="btn-play-pause" class="btn-play btn-all"></div>
-            <div id="time-passed" class="time-passed">0:00</div>
+            <div>
+                <div id="time-passed" class="time-passed">0:00</div>
+            </div>
             <div id="track-time" class="track-time">
 				<div id="track-slider" class="track-slider"></div>
             </div>
-            <div id="time-elasted" class="time-elasted">0:00</div>
-            <div  id="play-speed-menu" class="play-speed-menu">
-            <span id="play-speed" class="play-speed">1.00x</span>
+            <div>
+                <div id="time-elasted" class="time-elasted">0:00</div>
+            </div>
+            <div id="speed-play-menu" class="speed-play-menu">
+            <div id="speed-play" class="speed-play">1.00x</div>
                 <ul>
                   <li id="1">0.5</li>
                   <li id="2">1.0</li>

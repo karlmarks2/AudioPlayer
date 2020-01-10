@@ -5,7 +5,8 @@ function subscribeToEvents(event) { //+ построен - можно подпи
     let elmPlayPause = document.getElementById('btn-play-pause');
     let elmDownLoad = document.getElementById('btn-download');
     let elmUpLoad = document.getElementById('btn-upload');
-    let elmPlaySpeed = document.getElementById('play-speed');
+    let elmSpeedPlayMenu = document.getElementById('speed-play-menu'); 
+    let elmSpeedPlay = document.getElementById('speed-play');
     //-------------------------------------------------
     let elmsLi = document.getElementsByTagName('li');   
     for ( let i = 0; i < elmsLi.length; i++ ) {
@@ -54,12 +55,11 @@ function subscribeToEvents(event) { //+ построен - можно подпи
         console.log('Pressed click on button UpLoad');    
     })
     // --------------------------------------------
-    // handler clickElmPlaySpeed event ++++++++++++
+    // handler clickelmSpeedPlay event ++++++++++++
     // --------------------------------------------  
-    elmPlaySpeed.addEventListener("click", function(event){
-        console.log('Pressed click on elememt play-speed'); 
-        let elmPlaySpeedMenu = document.getElementById('play-speed-menu'); 
-        elmPlaySpeedMenu.classList.toggle('open');
+    elmSpeedPlay.addEventListener("click", function(event){
+        console.log('Pressed click on elememt speed-play'); 
+        elmSpeedPlayMenu.classList.toggle('open');
     })
     // --------------------------------------------
     // handler clickElmsLI event ++++++++++++
@@ -68,8 +68,9 @@ function subscribeToEvents(event) { //+ построен - можно подпи
         let elmLi = document.getElementById(this.id);
         console.log(`Pressed click on elememts li, ${elmLi.id}`);
         console.log(elmLi.textContent);
-        elmPlaySpeed.textContent = elmLi.textContent + 'x';
+        elmSpeedPlay.textContent = elmLi.textContent + 'x';
         elmSong.playbackRate = elmLi.textContent;
+        elmSpeedPlayMenu.classList.toggle('open');
     }
     // --------------------------------------------
     // handler clickElmSpeaker event
@@ -96,8 +97,8 @@ function subscribeToEvents(event) { //+ построен - можно подпи
     // --------------------------------------------  
     elmSong.addEventListener("canplaythrough", function(event){
         songDuration = elmSong.duration;
-        elmTimePassed.textContent=0.00;
-        elmTimeElasted.textContent=songDuration;
+        elmTimePassed.textContent='0.00';
+        elmTimeElasted.textContent=songDuration.toFixed(2);
         //console.log(`songDuration=${songDuration}`);    
     },false) 
     // --------------------------------------------
@@ -108,8 +109,8 @@ function subscribeToEvents(event) { //+ построен - можно подпи
         //console.log(`currentTime=${currentTime}`)
         let songRestTimePlay = visualTrackLen * (elmSong.currentTime / songDuration);
         elmTrackSlider.style.marginLeft = songRestTimePlay + "px";  
-        elmTimePassed.textContent = currentTime;
-        elmTimeElasted.textContent = songDuration-currentTime;
+        elmTimePassed.textContent = currentTime.toFixed(2);
+        elmTimeElasted.textContent = (songDuration-currentTime).toFixed(2);
         if (elmSong.currentTime == songDuration) {
             elmPlayPause.className = "";
             elmPlayPause.className = "btn-play btn-all";
